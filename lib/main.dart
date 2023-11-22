@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:dio/dio.dart';
 import 'package:restapi/cubit/my_cubit.dart';
 import 'package:restapi/home_screen.dart';
 import 'package:restapi/injection.dart';

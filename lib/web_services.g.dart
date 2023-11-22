@@ -6,10 +6,13 @@ part of 'web_services.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _WebServices implements WebServices {
-  _WebServices(this._dio, {this.baseUrl}) {
+  _WebServices(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://gorest.co.in/public/v2/';
   }
 
@@ -19,16 +22,24 @@ class _WebServices implements WebServices {
 
   @override
   Future<List<User>> getAllUsers() async {
-    const extra = <String, dynamic>{};
+    const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final headers = <String, dynamic>{};
-    final data = <String, dynamic>{};
-    final result = await _dio.fetch<List<dynamic>>(_setStreamType<List<User>>(
-        Options(method: 'GET', headers: headers, extra: extra)
-            .compose(_dio.options, 'users',
-                queryParameters: queryParameters, data: data)
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<User>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = result.data!
+    var value = _result.data!
         .map((dynamic i) => User.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
@@ -36,50 +47,80 @@ class _WebServices implements WebServices {
 
   @override
   Future<User> getUserById(id) async {
-    const extra = <String, dynamic>{};
+    const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final headers = <String, dynamic>{};
-    final data = <String, dynamic>{};
-    final result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(
-        Options(method: 'GET', headers: headers, extra: extra)
-            .compose(_dio.options, 'users/${id}',
-                queryParameters: queryParameters, data: data)
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = User.fromJson(result.data!);
+    final value = User.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<User> createNewUser(newuser, token) async {
-    const extra = <String, dynamic>{};
+  Future<User> createNewUser(
+    newuser,
+    token,
+  ) async {
+    const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final headers = <String, dynamic>{r'Authorization': token};
-    headers.removeWhere((k, v) => v == null);
-    final data = <String, dynamic>{};
-    data.addAll(newuser.toJson());
-    final result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(
-        Options(method: 'POST', headers: headers, extra: extra)
-            .compose(_dio.options, 'users',
-                queryParameters: queryParameters, data: data)
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(newuser.toJson());
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = User.fromJson(result.data!);
+    final value = User.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<HttpResponse<dynamic>> deleteUser(id, token) async {
-    const extra = <String, dynamic>{};
+  Future<HttpResponse<dynamic>> deleteUser(
+    id,
+    token,
+  ) async {
+    const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final headers = <String, dynamic>{r'Authorization': token};
-    headers.removeWhere((k, v) => v == null);
-    final data = <String, dynamic>{};
-    final result = await _dio.fetch(_setStreamType<HttpResponse<dynamic>>(
-        Options(method: 'DELETE', headers: headers, extra: extra)
-            .compose(_dio.options, 'users/${id}',
-                queryParameters: queryParameters, data: data)
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final _result =
+        await _dio.fetch(_setStreamType<HttpResponse<dynamic>>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'users/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = result.data;
-    final httpResponse = HttpResponse(value, result);
+    final value = _result.data;
+    final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
